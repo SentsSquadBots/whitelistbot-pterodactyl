@@ -1,0 +1,461 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY SENTENNIAL",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2023-11-09T00:00:00+00:00",
+    "name": "sents whitelistbot",
+    "author": "email@sentennial.dev",
+    "description": "Custom Egg for SentsWhitelistBot https:\/\/github.com\/SentsSquadBots\/sentswhitelistbot",
+    "features": null,
+    "docker_images": {
+        "Latest": "ghcr.io\/sentssquadsots\/whitelistbot-pterodactyl:main",
+    },
+    "file_denylist": [],
+    "startup": "python whitelistbot.py",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"Bot is ready!\"\r\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+    },
+    "variables": [
+        {
+            "name": "CommunityName",
+            "description": "Name of your community",
+            "env_variable": "CommunityName",
+            "default_value": "Your Name Here",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "CommunityLogoUrlPNG",
+            "description": "URL of your community logo",
+            "env_variable": "CommunityLogoUrlPNG",
+            "default_value": "https://i.imgur.com/NpN0xYj.jpeg",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|url",
+            "field_type": "text"
+        },
+        {
+            "name": "DiscordServer_ID",
+            "description": "Enable Dev mode in Discord > rclick server > Copy Server ID",
+            "env_variable": "DiscordServer_ID",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer",
+            "field_type": "text"
+        },
+        {
+            "name": "discord_token",
+            "description": "Get token from https:\/\/discord.com\/developers",
+            "env_variable": "discord_token",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer",
+            "field_type": "text"
+        },
+        {
+            "name": "steam_API_key",
+            "description": "Get from https:\/\/steamcommunity.com\/dev\/apikey",
+            "env_variable": "steam_API_key",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "do_log",
+            "description": "Should we log to a Discord channel?",
+            "env_variable": "do_log",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|regex:true|false",
+            "field_type": "text"
+        },        
+        {
+            "name": "log_channel_ID",
+            "description": "Should we log to a Discord channel?",
+            "env_variable": "log_channel_ID",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|integer",
+            "field_type": "text"
+        },
+
+        {
+            "name": "featureEnable_SquadGroups",
+            "description": "Manage Squad game permissions",
+            "env_variable": "featureEnable_SquadGroups",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|regex:true|false",
+            "field_type": "text"
+        }, 
+        {
+            "name": "squadGroups_outputFile",
+            "description": "Output file",
+            "env_variable": "squadGroups_outputFile",
+            "default_value": "squadadmins.cfg",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "squadGroups_updateCron",
+            "description": "See crontab.guru for cron examples",
+            "env_variable": "squadGroups_updateCron",
+            "default_value": "* * * * * *\/30",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+
+        {
+            "name": "multiwl_outputFile",
+            "description": "Output file for multiwl",
+            "env_variable": "multiwl_outputFile",
+            "default_value": "whitelists.cfg",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|regex:.*[.]cfg",
+            "field_type": "text"
+        },         
+
+        {
+            "name": "featureEnable_WhitelistAutoUpdate",
+            "description": "Auto update whitelists?",
+            "env_variable": "featureEnable_WhitelistAutoUpdate",
+            "default_value": "true",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|regex:true|false",
+            "field_type": "text"
+        }, 
+        {
+            "name": "featureEnable_PatreonAutoAudit",
+            "description": "Auto audit patreon?",
+            "env_variable": "featureEnable_PatreonAutoAudit",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "nullable|regex:true|false",
+            "field_type": "text"
+        }, 
+        {
+            "name": "secondsBetweenWhitelistUpdates",
+            "description": "How many seconds do users wait between whitelist edits",
+            "env_variable": "secondsBetweenWhitelistUpdates",
+            "default_value": "86400",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer",
+            "field_type": "text"
+        },     
+        {
+            "name": "whitelistUpdateFreqCron",
+            "description": "How often to update whitelist file",
+            "env_variable": "whitelistUpdateFreqCron",
+            "default_value": "* * * * *",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "patreonAuditFreqCron",
+            "description": "How often to do an auto patreon audit",
+            "env_variable": "patreonAuditFreqCron",
+            "default_value": "0 6 1 * *",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+
+        {
+            "name": "featureEnable_Seeding",
+            "description": "Seeding features? WIP",
+            "env_variable": "featureEnable_Seeding",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|regex:true|false",
+            "field_type": "text"
+        },  
+
+
+        {
+            "name": "featureEnable_Paypal",
+            "description": "Paypal Integration?",
+            "env_variable": "featureEnable_Paypal",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|regex:true|false",
+            "field_type": "text"
+        },    
+        {
+            "name": "paypal_clientID",
+            "description": "Get from PayPal dev",
+            "env_variable": "paypal_clientID",
+            "default_value": "xxxx",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "paypal_clientSecret",
+            "description": "Get from PayPal dev",
+            "env_variable": "paypal_clientSecret",
+            "default_value": "xxxx",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "paypal_checkoutLink",
+            "description": "Get from PayPal",
+            "env_variable": "paypal_checkoutLink",
+            "default_value": "https:\/\/www.google.com",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "paypal_singleWhitelistCosts",
+            "description": "Get from PayPal",
+            "env_variable": "paypal_singleWhitelistCosts",
+            "default_value": "5",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer",
+            "field_type": "text"
+        },
+        {
+            "name": "paypal_currency",
+            "description": "Currency",
+            "env_variable": "paypal_currency",
+            "default_value": "USD",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },        
+        {
+            "name": "paypal_roles",
+            "description": "Format like [123, 456]",
+            "env_variable": "paypal_roles",
+            "default_value": "[]",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        }, 
+        {
+            "name": "paypal_outputFile",
+            "description": "Output filename",
+            "env_variable": "paypal_outputFile",
+            "default_value": "paypalwls.cfg",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|regex:.*[.]cfg",
+            "field_type": "text"
+        }, 
+        {
+            "name": "featureEnable_PickMonthlyWhitelists",
+            "description": "Picks steamids from a thread",
+            "env_variable": "featureEnable_PickMonthlyWhitelists",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|regex:true|false",
+            "field_type": "text"
+        },    
+        {
+            "name": "monthlyWhitelists_outputFile",
+            "description": "Output filename",
+            "env_variable": "monthlyWhitelists_outputFile",
+            "default_value": "monthlywls.cfg",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|regex:.*[.]cfg",
+            "field_type": "text"
+        }, 
+        {
+            "name": "featureClanWhitelists",
+            "description": "Clans can self manage whitelists",
+            "env_variable": "featureClanWhitelists",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|regex:true|false",
+            "field_type": "text"
+        },
+        {
+            "name": "clanMoniker",
+            "description": "What are clans called",
+            "env_variable": "clanMoniker",
+            "default_value": "Clan",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        }, 
+        {
+            "name": "pathToClanWhitelist",
+            "description": "Output filename",
+            "env_variable": "pathToClanWhitelist",
+            "default_value": "clanwls.cfg",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|regex:.*[.]cfg",
+            "field_type": "text"
+        }, 
+        {
+            "name": "clanWhitelists",
+            "description": "Example: {'1066815293885780038':{'numWhitelists': 20}}",
+            "env_variable": "clanWhitelists",
+            "default_value": "{}",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        }, 
+
+
+
+
+
+
+
+
+
+
+
+        {
+            "name": "featureEnable_FileHosting",
+            "description": "Enable hosting the cfg files for use in remoteadminlists",
+            "env_variable": "featureEnable_FileHosting",
+            "default_value": "true",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|regex:true|false",
+            "field_type": "text"
+        },
+        {
+            "name": "fileHost_Port",
+            "description": "Port to host files on",
+            "env_variable": "fileHost_Port",
+            "default_value": "8084",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer",
+            "field_type": "text"
+        },
+
+
+
+
+
+
+
+        {
+            "name": "sqlite_db_file",
+            "description": "Sqlite database file for bot to use",
+            "env_variable": "sqlite_db_file",
+            "default_value": "whitelistDB.db",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|regex:.*[.]db",
+            "field_type": "text"
+        }, 
+        {
+            "name": "container_db_folder",
+            "description": "Folder where sqlite_db_file resides",
+            "env_variable": "container_db_folder",
+            "default_value": "db",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        }, 
+        {
+            "name": "container_cfg_folder",
+            "description": "Folder where the output cfg files reside",
+            "env_variable": "container_cfg_folder",
+            "default_value": "cfgs",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        }, 
+        {
+            "name": "patreonTierID_DiscordRoleID",
+            "description": "ex {'8350500':978418872111743026, '8350501':1064951253131599882}",
+            "env_variable": "patreonTierID_DiscordRoleID",
+            "default_value": "{}",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "nullable|string",
+            "field_type": "text"
+        }, 
+        {
+            "name": "whitelistsNeedThisDiscordRoleID",
+            "description": "Discord role whitelisters need",
+            "env_variable": "whitelistsNeedThisDiscordRoleID",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "nullable|integer",
+            "field_type": "text"
+        }, 
+        {
+            "name": "extraRolesForPatreonSubs",
+            "description": "ex [123,456]",
+            "env_variable": "extraRolesForPatreonSubs",
+            "default_value": "[]",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "nullable|string",
+            "field_type": "text"
+        }, 
+        {
+            "name": "featurePatreonAudit",
+            "description": "Not working",
+            "env_variable": "featurePatreonAudit",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "nullable|regex:true|false",
+            "field_type": "text"
+        },        
+        {
+            "name": "patreonAccessToken",
+            "description": "Not working",
+            "env_variable": "patreonAccessToken",
+            "default_value": "xxx",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "nullable|string",
+            "field_type": "text"
+        }
+    ]
+}
