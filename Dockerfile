@@ -13,7 +13,7 @@ WORKDIR     /home/container
 STOPSIGNAL  SIGINT
 RUN         wget https://raw.githubusercontent.com/SentsSquadBots/sentswhitelistbot/main/requirements.txt
 RUN         pip install -r requirements.txt
-RUN         wget https://raw.githubusercontent.com/SentsSquadBots/sentswhitelistbot/main/src/whitelistbot.py -P /home/co>
+RUN         wget https://raw.githubusercontent.com/SentsSquadBots/sentswhitelistbot/main/src/whitelistbot.py -P /home/container
 
 COPY        --chown=container:container ./entrypoint.sh /entrypoint.sh
 RUN         chmod +x /entrypoint.sh
