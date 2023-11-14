@@ -10,7 +10,7 @@
     "description": "Custom Egg for SentsWhitelistBot https:\/\/github.com\/SentsSquadBots\/sentswhitelistbot",
     "features": null,
     "docker_images": {
-        "Latest": "ghcr.io\/sentssquadsots\/whitelistbot-pterodactyl:main",
+        "Latest": "ghcr.io\/sentssquadsots\/whitelistbot-pterodactyl:main"
     },
     "file_denylist": [],
     "startup": "python whitelistbot.py",
