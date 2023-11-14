@@ -1,26 +1,31 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY SENTENNIAL",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
     "meta": {
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-11-09T00:00:00+00:00",
-    "name": "sents whitelistbot",
+    "exported_at": "2023-11-14T14:59:36+00:00",
+    "name": "sentswhitelistbot-egg",
     "author": "email@sentennial.dev",
-    "description": "Custom Egg for SentsWhitelistBot https:\/\/github.com\/SentsSquadBots\/sentswhitelistbot",
+    "description": null,
     "features": null,
     "docker_images": {
-        "Latest": "ghcr.io\/sentssquadsots\/whitelistbot-pterodactyl:main"
+        "ghcr.io\/sentssquadsots\/whitelistbot-pterodactyl:main": "ghcr.io\/sentssquadsots\/whitelistbot-pterodactyl:main"
     },
     "file_denylist": [],
     "startup": "python whitelistbot.py",
     "config": {
-        "files": "{}",
+        "files": "{\r\n    \"server.properties\": {\r\n        \"parser\": \"properties\",\r\n        \"find\": {\r\n            \"server-ip\": \"0.0.0.0\",\r\n            \"enable-query\": \"true\",\r\n            \"server-port\": \"{{server.build.default.port}}\",\r\n            \"query.port\": \"{{server.build.default.port}}\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"Bot is ready!\"\r\n}",
         "logs": "{}",
         "stop": "^C"
     },
     "scripts": {
+        "installation": {
+            "script": null,
+            "container": "alpine:3.4",
+            "entrypoint": "ash"
+        }
     },
     "variables": [
         {
@@ -55,7 +60,7 @@
         },
         {
             "name": "discord_token",
-            "description": "Get token from https:\/\/discord.com\/developers",
+            "description": "Get token from https://discord.com/developers",
             "env_variable": "discord_token",
             "default_value": "",
             "user_viewable": true,
@@ -65,7 +70,7 @@
         },
         {
             "name": "steam_API_key",
-            "description": "Get from https:\/\/steamcommunity.com\/dev\/apikey",
+            "description": "Get from https://steamcommunity.com/dev/apikey",
             "env_variable": "steam_API_key",
             "default_value": "",
             "user_viewable": true,
@@ -118,7 +123,7 @@
             "name": "squadGroups_updateCron",
             "description": "See crontab.guru for cron examples",
             "env_variable": "squadGroups_updateCron",
-            "default_value": "* * * * * *\/30",
+            "default_value": "* * * * * */30",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string",
@@ -233,7 +238,7 @@
             "name": "paypal_checkoutLink",
             "description": "Get from PayPal",
             "env_variable": "paypal_checkoutLink",
-            "default_value": "https:\/\/www.google.com",
+            "default_value": "https://www.google.com",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string",
@@ -339,17 +344,6 @@
             "rules": "required|string",
             "field_type": "text"
         }, 
-
-
-
-
-
-
-
-
-
-
-
         {
             "name": "featureEnable_FileHosting",
             "description": "Enable hosting the cfg files for use in remoteadminlists",
@@ -370,13 +364,6 @@
             "rules": "required|integer",
             "field_type": "text"
         },
-
-
-
-
-
-
-
         {
             "name": "sqlite_db_file",
             "description": "Sqlite database file for bot to use",
