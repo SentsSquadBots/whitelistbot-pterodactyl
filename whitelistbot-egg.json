@@ -10,7 +10,7 @@
     "description": null,
     "features": null,
     "docker_images": {
-        "ghcr.io\/sentssquadsots\/whitelistbot-pterodactyl:main": "ghcr.io\/sentssquadsots\/whitelistbot-pterodactyl:main"
+        "ghcr.io\/sentssquadbots\/whitelistbot-pterodactyl:main": "ghcr.io\/sentssquadbots\/whitelistbot-pterodactyl:main"
     },
     "file_denylist": [],
     "startup": "python whitelistbot.py",
